@@ -24,22 +24,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="400dp" />
+        app:layout_constraintGuide_begin="440dp" />
     <TextView
         android:id="@+id/singer"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="SINGER"
+        android:hint="artist"
+        android:layout_margin="8dp"
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/primary"
         />
     <TextView
         android:id="@+id/song"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:text="SONG"
+        android:hint="song"
+        android:layout_margin="8dp"
         app:layout_constraintTop_toBottomOf="@id/singer"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         />
 
 
@@ -54,12 +64,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@+id/guideline_one"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:cardBackgroundColor="#4d4d4d"
         app:cardElevation="5dp"
@@ -76,10 +83,10 @@
                 android:id="@+id/fab_play"
                 app:fabSize="normal"
                 app:layout_constraintStart_toEndOf="@+id/fab_previous"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toStartOf="@+id/fab_next"
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/white"
                 android:focusable="true"/>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
@@ -89,11 +96,12 @@
                 android:id="@+id/fab_previous"
                 app:fabSize="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toStartOf="@+id/fab_play"
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/white"
                 android:focusable="true"/>
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,10 +110,10 @@
                 android:id="@+id/fab_next"
                 app:fabSize="normal"
                 app:layout_constraintStart_toEndOf="@+id/fab_play"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/white"
                 android:focusable="true"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -142,6 +150,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
+                android:progressTint="@color/white"
+                android:thumbTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/fab_play"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

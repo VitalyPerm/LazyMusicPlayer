@@ -136,7 +136,7 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
         val projections = arrayOf(
             MediaStore.Audio.Media.ARTIST,
             MediaStore.Audio.Media.TITLE,
-            MediaStore.Audio.Media.DATA
+            MediaStore.Audio.Media.DATA,
         )
         val cursor: Cursor? = contentResolver.query(
             MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -217,8 +217,8 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
 
    private fun setSongTitle() {
         with(binding) {
-            song.text = musicList[currPosition + 1].songName
-            singer.text = musicList[currPosition + 1].artistName
+            song.text = musicList[currPosition].songName
+            singer.text = musicList[currPosition].artistName
         }
 
     }
