@@ -17,14 +17,39 @@
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/card_view"
+        app:layout_constraintBottom_toTopOf="@+id/singer"
         />
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline_one"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7"/>
+        app:layout_constraintGuide_begin="400dp" />
+    <TextView
+        android:id="@+id/singer"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="SINGER"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+    <TextView
+        android:id="@+id/song"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="SONG"
+        app:layout_constraintTop_toBottomOf="@id/singer"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="500dp" />
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"

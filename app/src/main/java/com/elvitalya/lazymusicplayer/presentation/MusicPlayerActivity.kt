@@ -43,6 +43,7 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
             checkPermission()
         with(binding) {
             fabPlay.setOnClickListener {
+                setSongTitle()
                 play(currPosition)
                 Log.d("position111", "Current position: $currPosition")
 
@@ -50,25 +51,27 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
             fabNext.setOnClickListener {
                 mediaPlayer?.stop()
                 state = false
-                if(currPosition < musicList.size - 1) currPosition++ else currPosition = 0
+                if (currPosition < musicList.size - 1) currPosition++ else currPosition = 0
+                setSongTitle()
                 play(currPosition)
                 Log.d("position111", "Current position: $currPosition")
             }
             fabPrevious.setOnClickListener {
                 mediaPlayer?.stop()
                 state = false
-                if(currPosition > 0) currPosition--
+                if (currPosition > 0) currPosition--
+                setSongTitle()
                 play(currPosition)
                 Log.d("position111", "Current position: $currPosition")
             }
 
-            seekBar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+            seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
                     seekBar: SeekBar?,
                     progress: Int,
                     fromUser: Boolean
                 ) {
-                    if(fromUser){
+                    if (fromUser) {
                         mediaPlayer?.start()
                         mediaPlayer?.seekTo(progress)
 
@@ -81,7 +84,7 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                    mediaPlayer?.seekTo(seekBar!!.progress*1000)
+                    mediaPlayer?.seekTo(seekBar!!.progress * 1000)
                 }
 
             })
@@ -112,6 +115,7 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
                         seekBar.progress = playerPosition
                         pastTextView.text = timerFormat(playerPosition.toLong())
                         remainTextView.text = timerFormat((totalDuration - playerPosition).toLong())
+
                     }
 
 
@@ -195,6 +199,10 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
         mediaPlayer?.stop()
         state = false
         currPosition = position
+        with(binding) {
+            song.text = musicList[position].songName
+            singer.text = musicList[position].artistName
+        }
         play(position)
     }
 
@@ -204,7 +212,14 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
 
     override fun onDestroy() {
         super.onDestroy()
-            mediaPlayer?.stop()
+        mediaPlayer?.stop()
     }
 
+   private fun setSongTitle() {
+        with(binding) {
+            song.text = musicList[currPosition + 1].songName
+            singer.text = musicList[currPosition + 1].artistName
+        }
+
+    }
 }
