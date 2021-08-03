@@ -17,7 +17,7 @@
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/singer"
+        app:layout_constraintBottom_toTopOf="@+id/frame_song"
         />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -25,33 +25,41 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="440dp" />
-    <TextView
-        android:id="@+id/singer"
+    <FrameLayout
+        android:id="@+id/frame_song"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:hint="artist"
-        android:layout_margin="8dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline_one"
         app:layout_constraintTop_toBottomOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/primary"
-        />
-    <TextView
-        android:id="@+id/song"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:hint="song"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/singer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        />
+        android:background="@drawable/background_title"
+        >
 
+        <TextView
+            android:id="@+id/singer"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center|top"
+            android:hint="artist"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/song"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:hint="song"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center|bottom"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            />
+
+
+    </FrameLayout>
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -59,12 +67,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="500dp" />
+        app:layout_constraintGuide_end="103dp" />
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/guideline_one"
-        android:layout_margin="8dp"
+        android:layout_height="120dp"
+        app:layout_constraintTop_toBottomOf="@id/frame_song"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +80,7 @@
         android:id="@+id/card_view">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
@@ -120,36 +127,26 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/past_text_view"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="8dp"
                 tools:text="@string/past_string"
                 android:textColor="@android:color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/remain_text_view"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"
                 tools:text="@string/remain_string"
+                android:layout_marginEnd="8dp"
                 android:textColor="@android:color/white"/>
             <SeekBar
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/seek_bar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/remain_text_view"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 app:layout_constraintStart_toEndOf="@+id/past_text_view"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
                 android:progressTint="@color/white"
                 android:thumbTint="@color/white"
                 app:layout_constraintTop_toBottomOf="@+id/fab_play"/>

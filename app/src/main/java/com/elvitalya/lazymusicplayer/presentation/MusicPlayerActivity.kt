@@ -43,7 +43,6 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
             checkPermission()
         with(binding) {
             fabPlay.setOnClickListener {
-                setSongTitle()
                 play(currPosition)
                 Log.d("position111", "Current position: $currPosition")
 
@@ -52,7 +51,6 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
                 mediaPlayer?.stop()
                 state = false
                 if (currPosition < musicList.size - 1) currPosition++ else currPosition = 0
-                setSongTitle()
                 play(currPosition)
                 Log.d("position111", "Current position: $currPosition")
             }
@@ -60,7 +58,6 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
                 mediaPlayer?.stop()
                 state = false
                 if (currPosition > 0) currPosition--
-                setSongTitle()
                 play(currPosition)
                 Log.d("position111", "Current position: $currPosition")
             }
@@ -94,39 +91,44 @@ class MusicPlayerActivity : AppCompatActivity(), ItemClicked {
     }
 
     private fun play(currPosition: Int) {
-
-        if (!state) {
-            binding.fabPlay.setImageResource(R.drawable.ic_stop)
-            state = true
-            mediaPlayer = MediaPlayer().apply {
-                setAudioStreamType(AudioManager.STREAM_MUSIC)
-                setDataSource(this@MusicPlayerActivity, Uri.parse(musicList[currPosition].songUri))
-                prepare()
-                start()
-            }
-
-            val mHandler = Handler()
-            this.runOnUiThread(object : Runnable {
-                override fun run() {
-                    val playerPosition = mediaPlayer?.currentPosition!! / 1000
-                    val totalDuration = mediaPlayer?.duration!! / 1000
-                    with(binding) {
-                        seekBar.max = totalDuration
-                        seekBar.progress = playerPosition
-                        pastTextView.text = timerFormat(playerPosition.toLong())
-                        remainTextView.text = timerFormat((totalDuration - playerPosition).toLong())
-
-                    }
-
-
-                    mHandler.postDelayed(this, 1000)
+        if(musicList.isNotEmpty()){
+            if (!state) {
+                binding.fabPlay.setImageResource(R.drawable.ic_stop)
+                state = true
+                mediaPlayer = MediaPlayer().apply {
+                    setAudioStreamType(AudioManager.STREAM_MUSIC)
+                    setDataSource(this@MusicPlayerActivity, Uri.parse(musicList[currPosition].songUri))
+                    prepare()
+                    start()
                 }
-            })
-        } else {
-            state = false
-            mediaPlayer?.stop()
-            binding.fabPlay.setImageResource(R.drawable.ic_play_arrow)
+
+                val mHandler = Handler()
+                this.runOnUiThread(object : Runnable {
+                    override fun run() {
+                        val playerPosition = mediaPlayer?.currentPosition!! / 1000
+                        val totalDuration = mediaPlayer?.duration!! / 1000
+                        with(binding) {
+                            seekBar.max = totalDuration
+                            seekBar.progress = playerPosition
+                            pastTextView.text = timerFormat(playerPosition.toLong())
+                            remainTextView.text = timerFormat((totalDuration - playerPosition).toLong())
+
+                        }
+
+
+                        mHandler.postDelayed(this, 1000)
+                    }
+                })
+                setSongTitle()
+            } else {
+                state = false
+                mediaPlayer?.stop()
+                binding.fabPlay.setImageResource(R.drawable.ic_play_arrow)
+            }
+        } else{
+            Toast.makeText(this, "Music not found", Toast.LENGTH_SHORT).show()
         }
+
 
     }
 
